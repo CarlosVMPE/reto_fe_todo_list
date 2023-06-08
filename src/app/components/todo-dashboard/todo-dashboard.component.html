@@ -1,21 +1,20 @@
-<div class="navbar">
-  <h1>Todo List App</h1>
-</div>
+<mat-toolbar color="primary">
+  <span>Todo List App</span>
+</mat-toolbar>
 
 <div class="formAddTodo">
   <form [formGroup]="formAddTodo">
-      <input
-        type="text"
-        data-test="contact-filter-control"
-        formControlName="nameTodo"
-        placeholder="Ingrese un nombre para el nuevo Todo"
-      />
 
-      <button
-        (click)="newTodo()"
-        [disabled]="formAddTodo.invalid">
-        Agregar Todo
-      </button>
+    <mat-form-field class="example-full-width">
+      <mat-label>Ingrese un título</mat-label>
+      <input matInput type="text" formControlName="nameTodo"
+       placeholder="Ingrese un nombre para el nuevo Todo"/>
+    </mat-form-field>
+
+
+    <button (click)="newTodo()" [disabled]="formAddTodo.invalid">
+      Agregar Todo
+    </button>
   </form>
 </div>
 

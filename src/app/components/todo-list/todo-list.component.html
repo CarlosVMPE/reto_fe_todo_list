@@ -1,9 +1,9 @@
-<p>todo-list works!</p>
 
-<ul>
-  <li *ngFor="let todo of todoList">
+<mat-list>
+  <mat-list-item *ngFor="let todo of todoList">
     <h2 (click)="setSelectedTodo(todo)">{{ todo.titulo }}</h2>
-  </li>
-</ul>
+    <mat-divider></mat-divider>
+  </mat-list-item>
+</mat-list>
 
 <app-todo-detail [todoSelected]="todoSelected" [todoList]="todoList"></app-todo-detail>
