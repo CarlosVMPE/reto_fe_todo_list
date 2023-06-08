@@ -1,0 +1,23 @@
+<div class="navbar">
+  <h1>Todo List App</h1>
+</div>
+
+<div class="formAddTodo">
+  <form [formGroup]="formAddTodo">
+      <input
+        type="text"
+        data-test="contact-filter-control"
+        formControlName="nameTodo"
+        placeholder="Ingrese un nombre para el nuevo Todo"
+      />
+
+      <button
+        (click)="newTodo()"
+        [disabled]="formAddTodo.invalid">
+        Agregar Todo
+      </button>
+  </form>
+</div>
+
+
+<app-todo-list [todoList]="todoList"></app-todo-list>

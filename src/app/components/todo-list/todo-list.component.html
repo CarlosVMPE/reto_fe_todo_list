@@ -1,0 +1,9 @@
+<p>todo-list works!</p>
+
+<ul>
+  <li *ngFor="let todo of todoList">
+    <h2 (click)="setSelectedTodo(todo)">{{ todo.titulo }}</h2>
+  </li>
+</ul>
+
+<app-todo-detail [todoSelected]="todoSelected" [todoList]="todoList"></app-todo-detail>

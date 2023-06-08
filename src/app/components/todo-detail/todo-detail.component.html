@@ -1,0 +1,28 @@
+<p>todo-detail works!</p>
+
+<div *ngIf="todoSelected.titulo">
+  <h3>
+    {{ todoSelected.titulo }}
+  </h3>
+
+  <div class="formAddItem">
+    <form [formGroup]="formAddItem">
+        <input
+          type="text"
+          data-test="contact-filter-control"
+          formControlName="nameItem"
+          placeholder="Ingrese una tarea"
+        />
+
+        <button
+          (click)="addItemsTodo()"
+          [disabled]="formAddItem.invalid">
+          Agregar Tarea
+        </button>
+    </form>
+  </div>
+
+  <li *ngFor="let item of todoSelected.items">
+    <p>{{ item.desc }}</p>
+  </li>
+</div>
