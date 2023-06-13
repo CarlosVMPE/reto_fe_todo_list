@@ -1,22 +1,23 @@
-<mat-toolbar color="primary">
-  <span>Todo List App</span>
-</mat-toolbar>
+<app-todo-navbar></app-todo-navbar>
 
-<div class="formAddTodo">
-  <form [formGroup]="formAddTodo">
+<main>
+  <form [formGroup]="formAddTodo" class="formAddTodo">
 
-    <mat-form-field class="example-full-width">
-      <mat-label>Ingrese un título</mat-label>
-      <input matInput type="text" formControlName="nameTodo"
-       placeholder="Ingrese un nombre para el nuevo Todo"/>
-    </mat-form-field>
+    <div class="wrap-add-input">
+      <mat-form-field class="example-full-width">
+        <mat-label>Ingrese un título</mat-label>
+        <input matInput type="text" formControlName="nameTodo" placeholder="Ingrese un nombre para el nuevo Todo" />
+      </mat-form-field>
 
+      <div class="wrap-button">
+        <button mat-raised-button color="accent" (click)="newTodo()" [disabled]="formAddTodo.invalid">
+          Agregar Todo
+        </button>
+      </div>
+    </div>
 
-    <button (click)="newTodo()" [disabled]="formAddTodo.invalid">
-      Agregar Todo
-    </button>
   </form>
-</div>
 
+  <app-todo-list [todoList]="todoList"></app-todo-list>
 
-<app-todo-list [todoList]="todoList"></app-todo-list>
+</main>

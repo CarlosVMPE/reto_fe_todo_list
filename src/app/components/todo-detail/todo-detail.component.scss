@@ -1,0 +1,51 @@
+.item-todo{
+  cursor: pointer;
+  display: flex;
+  width: 100%;
+
+  .item-desc{
+    width: 90%;
+  }
+
+  .item-edit,
+  .item-delete{
+    text-align: center;
+    width: 5%;
+
+    @media (max-width: 767px){
+      width: 7%;
+    }
+  }
+}
+
+.mdc-dialog__content,
+.mdc-dialog__actions{
+  padding: 1.5rem 1.2rem;
+}
+
+.mdc-dialog__content{
+  padding-bottom: 0;
+}
+
+.mdc-dialog__actions{
+  padding-top: 0;
+}
+
+mat-form-field{
+  width: 100%;
+}
+
+
+.delete-todo{
+  p{
+    margin-bottom: 1.5rem;
+  }
+}
+
+.section-items{
+  margin-top: 1rem;
+
+  @media (max-width: 767px) {
+    margin-top: 2rem;
+  }
+}

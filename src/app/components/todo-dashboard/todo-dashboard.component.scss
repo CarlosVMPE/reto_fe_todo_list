@@ -1,0 +1,15 @@
+main {
+  margin: 3rem auto;
+  max-width: 1200px;
+}
+
+.formAddTodo{
+  margin-bottom: 1.3rem;
+}
+
+@media (max-width: 991px) {
+  main{
+    margin: 2rem 1rem;
+  }
+}
+

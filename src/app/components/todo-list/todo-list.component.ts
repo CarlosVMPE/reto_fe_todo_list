@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { Lista } from 'src/app/models/TodoList';
 
 @Component({
@@ -9,10 +9,19 @@ import { Lista } from 'src/app/models/TodoList';
 export class TodoListComponent {
   @Input() todoList: Lista[] = [];
   todoSelected: Lista = new Lista('');
+  panelOpenState = false;
 
   constructor() {}
 
   setSelectedTodo(todo: Lista) {
     this.todoSelected = todo;
+  }
+
+  markAsCompleteTodo(todo: Lista) {
+    if (todo.items.length > 0) {
+      return todo.items.every((item) => item.completado === true);
+    } else {
+      return false;
+    }
   }
 }

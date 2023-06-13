@@ -1,28 +1,31 @@
-<p>todo-detail works!</p>
-
 <div *ngIf="todoSelected.titulo">
-  <h3>
-    {{ todoSelected.titulo }}
-  </h3>
 
   <div class="formAddItem">
     <form [formGroup]="formAddItem">
-        <input
-          type="text"
-          data-test="contact-filter-control"
-          formControlName="nameItem"
-          placeholder="Ingrese una tarea"
-        />
 
-        <button
-          (click)="addItemsTodo()"
-          [disabled]="formAddItem.invalid">
-          Agregar Tarea
-        </button>
+      <div class="wrap-add-input">
+
+        <mat-form-field class="example-full-width">
+          <mat-label>Ingrese una tarea</mat-label>
+          <input matInput type="text" formControlName="nameItem" placeholder="Ingrese una tarea" />
+        </mat-form-field>
+
+        <div class="wrap-button">
+          <button mat-raised-button color="primary" (click)="addItemsTodo()" [disabled]="formAddItem.invalid">
+            Agregar Tarea
+          </button>
+        </div>
+      </div>
+
     </form>
   </div>
 
-  <li *ngFor="let item of todoSelected.items">
-    <p>{{ item.desc }}</p>
-  </li>
+  <section *ngIf="todoSelected.items.length > 0" class="section-items">
+    <p *ngFor="let item of todoSelected.items; let i = index" class="item-todo">
+      <mat-checkbox class="item-desc" (click)="toggleCompleteItem(i)" [checked]="item.completado">{{item.desc}}</mat-checkbox>
+      <mat-icon class="item-edit" aria-hidden="false" color="accent" aria-label="Example home icon" fontIcon="edit" (click)="openDialogEdit(i, item.desc)"></mat-icon>
+      <mat-icon class="item-delete" aria-hidden="false" color="warn" aria-label="Example home icon" fontIcon="delete" (click)="openDialogDelete(i, item.desc)"></mat-icon>
+    </p>
+  </section>
+
 </div>

@@ -13,13 +13,19 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatListModule } from '@angular/material/list';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-
+import { MatButtonModule } from '@angular/material/button';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
+import { TodoNavbarComponent } from './components/todo-navbar/todo-navbar.component';
 @NgModule({
   declarations: [
     AppComponent,
     TodoDashboardComponent,
     TodoListComponent,
-    TodoDetailComponent
+    TodoDetailComponent,
+    TodoNavbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,9 +35,15 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatToolbarModule,
     MatDividerModule,
     MatListModule,
-    MatFormFieldModule, MatInputModule
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule,
+    MatExpansionModule,
+    MatCheckboxModule,
+    MatIconModule,
+    MatDialogModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

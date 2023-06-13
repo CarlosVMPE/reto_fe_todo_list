@@ -2,3 +2,36 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background: rgb(48, 48, 48)}
+
+.wrap-add-input {
+  display: flex;
+  justify-content: center;
+  max-width: 100%;
+  width: 100%;
+
+  .example-full-width{
+    height: 80px;
+    width: 120%;
+  }
+
+  .wrap-button{
+    margin-left: 1rem;
+    width: 15%;
+    button{
+      height: 60px;
+    }
+  }
+
+  @media (max-width: 767px) {
+    display: block;
+
+    .wrap-button{
+      margin: 0;
+    }
+
+    .example-full-width,
+    .wrap-button, .wrap-button > button{
+      width: 100%;
+    }
+  }
+}

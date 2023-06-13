@@ -1,12 +1,12 @@
 {
-  "name": "test-ang-16",
-  "version": "0.0.0",
+  "name": "todo-app-fe",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test --no-watch --code-coverage"
   },
   "private": true,
   "dependencies": {

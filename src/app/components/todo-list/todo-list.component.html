@@ -1,9 +1,15 @@
+<mat-accordion>
+  <mat-expansion-panel *ngFor="let todo of todoList" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+    <mat-expansion-panel-header (click)="setSelectedTodo(todo)">
+      <mat-panel-title>
+        {{ todo.titulo }}
 
-<mat-list>
-  <mat-list-item *ngFor="let todo of todoList">
-    <h2 (click)="setSelectedTodo(todo)">{{ todo.titulo }}</h2>
-    <mat-divider></mat-divider>
-  </mat-list-item>
-</mat-list>
-
-<app-todo-detail [todoSelected]="todoSelected" [todoList]="todoList"></app-todo-detail>
+        <button class="button-completed" mat-raised-button color="accent" *ngIf="markAsCompleteTodo(todo)">
+          <mat-icon>done</mat-icon>
+          <span>Completado</span>
+        </button>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+    <app-todo-detail [todoSelected]="todoSelected" [todoList]="todoList"></app-todo-detail>
+  </mat-expansion-panel>
+</mat-accordion>
