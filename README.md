@@ -1,2 +1,2 @@
 # reto_fe_todo_list
-Reto front end elavorando un proyecto de Todo List
+Reto front end construyendo un proyecto de Todo List
