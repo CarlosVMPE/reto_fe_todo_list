@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Lista } from 'src/app/models/TodoList';
+import { TodoList } from 'src/app/shared/models/TodoList';
 
 @Component({
   selector: 'app-todo-dashboard',
@@ -8,18 +8,18 @@ import { Lista } from 'src/app/models/TodoList';
   styleUrls: ['./todo-dashboard.component.scss'],
 })
 export class TodoDashboardComponent {
-  todoList: Lista[] = [];
+  todoList: TodoList[] = [];
 
   formAddTodo: FormGroup = this.fb.group({
-    nameTodo: ['', [Validators.required]],
+    nameTodo: ['', [Validators.required, Validators.pattern('^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+$')]],
   });
 
   constructor(private fb: FormBuilder) {}
 
-  newTodo(): void {
+  createNewTodo(): void {
     if (this.nameTodo?.value) {
-      const nuevaLista = new Lista(this.nameTodo?.value);
-      this.todoList.push(nuevaLista);
+      const newTodoList = new TodoList(this.nameTodo?.value);
+      this.todoList.push(newTodoList);
       this.formAddTodo.reset();
     }
   }

@@ -1,4 +1,4 @@
-export class ListaItem {
+export class TodoItem {
   desc: string;
   completado: boolean;
 

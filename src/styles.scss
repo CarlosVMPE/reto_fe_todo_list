@@ -3,18 +3,18 @@
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background: rgb(48, 48, 48)}
 
-.wrap-add-input {
+.block__addition {
   display: flex;
   justify-content: center;
   max-width: 100%;
   width: 100%;
 
-  .example-full-width{
+  .block__addition--input{
     height: 80px;
     width: 120%;
   }
 
-  .wrap-button{
+  .block__addition--button{
     margin-left: 1rem;
     width: 15%;
     button{
@@ -25,12 +25,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background:
   @media (max-width: 767px) {
     display: block;
 
-    .wrap-button{
+    .block__addition--button{
       margin: 0;
     }
 
-    .example-full-width,
-    .wrap-button, .wrap-button > button{
+    .block__addition--input,
+    .block__addition--button, .block__addition--button > button{
       width: 100%;
     }
   }

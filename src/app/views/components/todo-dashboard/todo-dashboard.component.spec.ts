@@ -40,7 +40,7 @@ describe('TodoDashboardComponent', () => {
 
   it('should be add a new todo in the List of Todos', () => {
     component.nameTodo?.setValue('Nuevo Todo');
-    component.newTodo();
+    component.createNewTodo();
     expect(component.todoList.length).toBe(1);
     expect(component.todoList.find(item => item.titulo === 'Nuevo Todo')).toBeTruthy();
   })

@@ -3,10 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TodoDashboardComponent } from './components/todo-dashboard/todo-dashboard.component';
+import { TodoDashboardComponent } from './views/components/todo-dashboard/todo-dashboard.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { TodoListComponent } from './components/todo-list/todo-list.component';
-import { TodoDetailComponent } from './components/todo-detail/todo-detail.component';
+import { TodoListComponent } from './views/components/todo-list/todo-list.component';
+import { TodoDetailComponent } from './views/components/todo-detail/todo-detail.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatDividerModule } from '@angular/material/divider';
@@ -18,7 +18,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
-import { TodoNavbarComponent } from './components/todo-navbar/todo-navbar.component';
+import { TodoNavbarComponent } from './views/components/todo-navbar/todo-navbar.component';
 @NgModule({
   declarations: [
     AppComponent,

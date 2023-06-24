@@ -3,6 +3,7 @@ import {
   FormBuilder,
   FormGroup,
   FormsModule,
+  ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -14,8 +15,8 @@ import {
 } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { ListaItem } from 'src/app/models/TodoItem';
-import { Lista } from 'src/app/models/TodoList';
+import { TodoItem } from 'src/app/shared/models/TodoItem';
+import { TodoList } from 'src/app/shared/models/TodoList';
 
 @Component({
   selector: 'app-todo-detail',
@@ -23,12 +24,12 @@ import { Lista } from 'src/app/models/TodoList';
   styleUrls: ['./todo-detail.component.scss'],
 })
 export class TodoDetailComponent {
-  @Input() todoSelected: Lista = new Lista('');
-  @Input() todoList: Lista[] = [];
-  description = '';
+  @Input() todoSelected: TodoList = new TodoList('');
+  @Input() todoList: TodoList[] = [];
+  description: string;
 
   formAddItem: FormGroup = this.fb.group({
-    nameItem: ['', [Validators.required]],
+    nameItem: ['', [Validators.required, Validators.pattern('^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+$')]],
   });
 
   constructor(private fb: FormBuilder, public dialog: MatDialog) {}
@@ -37,8 +38,8 @@ export class TodoDetailComponent {
     if (this.nameItem?.value) {
       this.todoList.map((list) => {
         if (list.id === this.todoSelected.id) {
-          const nuevoItem = new ListaItem(this.nameItem?.value);
-          list.items.push(nuevoItem);
+          const newTodoItem = new TodoItem(this.nameItem?.value);
+          list.items.push(newTodoItem);
           this.formAddItem.reset();
         }
       });
@@ -112,17 +113,31 @@ export class TodoDetailComponent {
     MatFormFieldModule,
     MatInputModule,
     FormsModule,
+    ReactiveFormsModule,
     MatButtonModule,
   ],
 })
 export class EditTodoComponent {
+  formEditItem: FormGroup = this.fbBuild.group({
+    description: ['', [Validators.required, Validators.pattern('^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+$')]],
+  });
+
   constructor(
+    private fbBuild: FormBuilder,
     public dialogRef: MatDialogRef<EditTodoComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData
-  ) {}
+  ) {
+    if(data && data.description){
+      this.description?.setValue(data.description);
+    }
+  }
 
   onNoClick(): void {
     this.dialogRef.close();
+  }
+
+  get description() {
+    return this.formEditItem.get('description');
   }
 }
 

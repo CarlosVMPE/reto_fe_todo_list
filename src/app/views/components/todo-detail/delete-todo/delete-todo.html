@@ -1,8 +1,8 @@
-<div mat-dialog-content class="delete-todo">
+<div mat-dialog-content class="block__delete--todo">
   <h2>¿Seguro que deseas eliminar la tarea?</h2>
   <p>{{ data.description }}</p>
 </div>
-<div mat-dialog-actions>
+<div mat-dialog-actions class="block__delete--accions">
   <button mat-raised-button color="warn" (click)="onNoClick()">Cancelar</button>
   <button mat-raised-button color="primary" [mat-dialog-close]="data.description" cdkFocusInitial [disabled]="data.description.length == 0">Eliminar</button>
 </div>

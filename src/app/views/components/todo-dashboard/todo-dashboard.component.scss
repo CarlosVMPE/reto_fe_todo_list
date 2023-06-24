@@ -1,0 +1,15 @@
+.dashboard__todo{
+  margin: 3rem auto;
+  max-width: 1200px;
+
+  @media (max-width: 991px) {
+    margin: 2rem 1rem;
+  }
+}
+
+.dashboard__todo--form{
+  margin-bottom: 1.3rem;
+}
+
+
+

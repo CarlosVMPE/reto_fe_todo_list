@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DeleteTodoComponent, EditTodoComponent, TodoDetailComponent } from './todo-detail.component';
 
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { Lista } from 'src/app/models/TodoList';
+import { Lista } from 'src/app/shared/models/TodoList';
 import { of } from 'rxjs';
 
 describe('TodoDetailComponent', () => {

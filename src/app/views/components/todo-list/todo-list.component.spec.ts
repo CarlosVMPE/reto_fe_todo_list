@@ -2,8 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatExpansionModule } from '@angular/material/expansion';
 
 import { TodoListComponent } from './todo-list.component';
-import { Lista } from 'src/app/models/TodoList';
-import { ListaItem } from 'src/app/models/TodoItem';
+import { Lista } from 'src/app/shared/models/TodoList';
+import { ListaItem } from 'src/app/shared/models/TodoItem';
 
 describe('TodoListComponent', () => {
   let component: TodoListComponent;

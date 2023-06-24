@@ -1,14 +1,23 @@
-.item-todo{
+
+.todo__detail--accions{
+  margin-top: 1rem;
+
+  @media (max-width: 767px) {
+    margin-top: 2rem;
+  }
+}
+
+.todo__detail--item{
   cursor: pointer;
   display: flex;
   width: 100%;
 
-  .item-desc{
+  .todo__detail--item--description{
     width: 90%;
   }
 
-  .item-edit,
-  .item-delete{
+  .todo__detail--item--edit,
+  .todo__detail--item--delete{
     text-align: center;
     width: 5%;
 
@@ -36,16 +45,8 @@ mat-form-field{
 }
 
 
-.delete-todo{
+.block__delete--todo{
   p{
     margin-bottom: 1.5rem;
-  }
-}
-
-.section-items{
-  margin-top: 1rem;
-
-  @media (max-width: 767px) {
-    margin-top: 2rem;
   }
 }

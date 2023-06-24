@@ -1,12 +1,12 @@
-import { ListaItem } from './TodoItem';
+import { TodoItem } from './TodoItem';
 
-export class Lista {
+export class TodoList {
   id: number;
   titulo: string;
   creadaEn: Date;
   terminadaEn?: Date;
   terminada: boolean;
-  items: ListaItem[];
+  items: TodoItem[];
 
   constructor(titulo: string) {
     this.titulo = titulo;
