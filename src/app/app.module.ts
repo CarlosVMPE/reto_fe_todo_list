@@ -19,6 +19,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { TodoNavbarComponent } from './views/components/todo-navbar/todo-navbar.component';
+import { EditTodoComponent } from './views/components/todo-detail/edit-todo/edit-todo.component';
+import { DeleteTodoComponent } from './views/components/todo-detail/delete-todo/delete-todo.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,6 +28,8 @@ import { TodoNavbarComponent } from './views/components/todo-navbar/todo-navbar.
     TodoListComponent,
     TodoDetailComponent,
     TodoNavbarComponent,
+    EditTodoComponent,
+    DeleteTodoComponent
   ],
   imports: [
     BrowserModule,

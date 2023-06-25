@@ -1,19 +1,19 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { DeleteTodoComponent, EditTodoComponent, TodoDetailComponent } from './todo-detail.component';
+import { TodoDetailComponent } from './todo-detail.component';
 
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { Lista } from 'src/app/shared/models/TodoList';
+import { TodoList } from 'src/app/shared/models/TodoList';
 import { of } from 'rxjs';
 
 describe('TodoDetailComponent', () => {
   let component: TodoDetailComponent;
   let fixture: ComponentFixture<TodoDetailComponent>;
-  let mockList: Lista[] = [new Lista('First Todo'), new Lista('Second Todo')];
+  let mockList: TodoList[] = [new TodoList('First Todo'), new TodoList('Second Todo')];
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [TodoDetailComponent],
-      imports: [MatDialogModule, EditTodoComponent, DeleteTodoComponent],
+      imports: [MatDialogModule],
     });
     fixture = TestBed.createComponent(TodoDetailComponent);
     component = fixture.componentInstance;

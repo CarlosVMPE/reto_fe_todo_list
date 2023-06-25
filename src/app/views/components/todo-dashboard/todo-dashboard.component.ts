@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { TodolistService } from 'src/app/core/services/todolist.service';
 import { TodoList } from 'src/app/shared/models/TodoList';
 
 @Component({
@@ -14,12 +15,16 @@ export class TodoDashboardComponent {
     nameTodo: ['', [Validators.required, Validators.pattern('^[A-Za-z0-9ñÑáéíóúÁÉÍÓÚ ]+$')]],
   });
 
-  constructor(private fb: FormBuilder) {}
+  constructor(
+    private fb: FormBuilder,
+    public todoListService: TodolistService
+    ) {}
 
   createNewTodo(): void {
     if (this.nameTodo?.value) {
       const newTodoList = new TodoList(this.nameTodo?.value);
       this.todoList.push(newTodoList);
+      this.todoListService.updateTodoList(this.todoList);
       this.formAddTodo.reset();
     }
   }

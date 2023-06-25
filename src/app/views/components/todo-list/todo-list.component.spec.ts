@@ -2,13 +2,13 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatExpansionModule } from '@angular/material/expansion';
 
 import { TodoListComponent } from './todo-list.component';
-import { Lista } from 'src/app/shared/models/TodoList';
-import { ListaItem } from 'src/app/shared/models/TodoItem';
+import { TodoList } from 'src/app/shared/models/TodoList';
+import { TodoItem } from 'src/app/shared/models/TodoItem';
 
 describe('TodoListComponent', () => {
   let component: TodoListComponent;
   let fixture: ComponentFixture<TodoListComponent>;
-  let mockList: Lista[] = [new Lista('First Todo'), new Lista('Second Todo')];
+  let mockList: TodoList[] = [new TodoList('First Todo'), new TodoList('Second Todo')];
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -35,8 +35,8 @@ describe('TodoListComponent', () => {
   });
 
   it('should be return false when all items are incomplete', () => {
-    component.todoList[0].items.push(new ListaItem('Task 1'));
-    component.todoList[0].items.push(new ListaItem('Task 2'));
+    component.todoList[0].items.push(new TodoItem('Task 1'));
+    component.todoList[0].items.push(new TodoItem('Task 2'));
     expect(component.markAsCompleteTodo(component.todoList[0])).toBeFalsy();
   });
 

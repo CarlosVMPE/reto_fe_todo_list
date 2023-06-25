@@ -3,13 +3,12 @@
     <mat-expansion-panel-header (click)="setSelectedTodo(todo)">
       <mat-panel-title>
         {{ todo.titulo }}
-
         <button class="block__todo--completed" mat-raised-button color="accent" *ngIf="markAsCompleteTodo(todo)">
           <mat-icon>done</mat-icon>
           <span>Completado</span>
         </button>
       </mat-panel-title>
     </mat-expansion-panel-header>
-    <app-todo-detail [todoSelected]="todoSelected" [todoList]="todoList"></app-todo-detail>
+    <app-todo-detail></app-todo-detail>
   </mat-expansion-panel>
 </mat-accordion>
