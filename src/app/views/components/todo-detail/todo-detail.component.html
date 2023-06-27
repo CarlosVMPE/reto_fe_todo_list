@@ -1,15 +1,15 @@
 <div *ngIf="todoSelected.titulo" class="todo__detail">
 
   <div class="todo__detail--form">
-    <form [formGroup]="formAddItem">
+    <form [formGroup]="formAddItem" data-test="todo--detail--form">
       <div class="block__addition">
         <mat-form-field class="block__addition--input">
           <mat-label>Ingrese una tarea</mat-label>
-          <input matInput type="text" formControlName="nameItem" placeholder="Ingrese una tarea" />
+          <input matInput type="text" formControlName="nameItem" data-test="nameItem" placeholder="Ingrese una tarea" />
         </mat-form-field>
 
         <div class="block__addition--button">
-          <button mat-raised-button color="primary" (click)="addItemsTodo()" [disabled]="formAddItem.invalid">
+          <button mat-raised-button color="primary" data-test="button--addition-item" (click)="addItemsTodo()" [disabled]="formAddItem.invalid">
             Agregar Tarea
           </button>
         </div>
@@ -17,20 +17,23 @@
     </form>
   </div>
 
-  <section *ngIf="todoSelected.items.length > 0" class="todo__detail--accions">
+  <section *ngIf="todoSelected.items.length > 0" class="todo__detail--accions" data-test="todo--detail">
     <p *ngFor="let item of todoSelected.items; let i = index" class="todo__detail--item">
       <mat-checkbox
         class="todo__detail--item--description"
+        data-test="item-description"
         (click)="toggleCompleteItem(i)"
         [checked]="item.completado">
         {{item.desc}}
       </mat-checkbox>
       <mat-icon class="todo__detail--item--edit"
+        data-test="item-edit"
         aria-hidden="false" color="accent" aria-label="Edición de la tarea"
         title="Edición de la tarea" fontIcon="edit"
         (click)="openDialogEdit(i, item.desc)">
       </mat-icon>
       <mat-icon class="todo__detail--item--delete"
+        data-test="item-delete"
         aria-hidden="false" color="warn" aria-label="Eliminación de la tarea"
         title="Eliminación de la tarea" fontIcon="delete"
         (click)="openDialogDelete(i, item.desc)">

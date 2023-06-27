@@ -1,16 +1,16 @@
 <app-todo-navbar></app-todo-navbar>
 
 <main class="dashboard__todo">
-  <form [formGroup]="formAddTodo" class="dashboard__todo--form">
+  <form [formGroup]="formAddTodo" class="dashboard__todo--form" data-test="dashboard__todo--form">
 
     <div class="block__addition">
       <mat-form-field class="block__addition--input">
         <mat-label>Ingrese un título</mat-label>
-        <input matInput type="text" formControlName="nameTodo" placeholder="Ingrese un nombre para el nuevo Todo" />
+        <input matInput type="text" formControlName="nameTodo" data-test="nameTodo" placeholder="Ingrese un nombre para el nuevo Todo" />
       </mat-form-field>
 
       <div class="block__addition--button">
-        <button mat-raised-button color="accent" (click)="createNewTodo()" [disabled]="formAddTodo.invalid">
+        <button mat-raised-button color="accent" data-test="button--addition-todo" (click)="createNewTodo()" [disabled]="formAddTodo.invalid">
           Agregar Todo
         </button>
       </div>

@@ -8,7 +8,7 @@
 
         <mat-form-field>
           <mat-label>Nombre de la tarea</mat-label>
-          <input matInput formControlName="description">
+          <input matInput formControlName="description" name="description-edit" data-test="description-edit">
         </mat-form-field>
       </div>
 
@@ -18,5 +18,6 @@
 </div>
 <div mat-dialog-actions class="block__edit--accions">
   <button mat-raised-button color="warn" (click)="onNoClick()">Cancelar</button>
-  <button mat-raised-button color="primary" [mat-dialog-close]="formEditItem.get('description')?.value" cdkFocusInitial [disabled]="formEditItem.invalid">Actualizar</button>
+  <button mat-raised-button color="primary" data-test="buton-update-item" [mat-dialog-close]="formEditItem.get('description')?.value"
+  cdkFocusInitial [disabled]="formEditItem.invalid">Actualizar</button>
 </div>
