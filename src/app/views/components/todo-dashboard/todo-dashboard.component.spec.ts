@@ -1,16 +1,13 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { TodoDashboardComponent } from './todo-dashboard.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
 import { MatExpansionModule } from '@angular/material/expansion';
 
 import { TodoListComponent } from '../todo-list/todo-list.component';
-import { TodoNavbarComponent } from '../todo-navbar/todo-navbar.component';
-import { MatInputModule } from '@angular/material/input';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TodoDashboardComponent } from './todo-dashboard.component';
+import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
 
 describe('TodoDashboardComponent', () => {
   let component: TodoDashboardComponent;
@@ -18,16 +15,17 @@ describe('TodoDashboardComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TodoDashboardComponent, TodoNavbarComponent, TodoListComponent],
+      declarations: [
+        TodoDashboardComponent,
+        TodoListComponent,
+        NavbarComponent,
+      ],
       imports: [
         BrowserAnimationsModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatToolbarModule,
         MatIconModule,
         MatExpansionModule,
-        ReactiveFormsModule
-      ]
+        ReactiveFormsModule,
+      ],
     });
     fixture = TestBed.createComponent(TodoDashboardComponent);
     component = fixture.componentInstance;
@@ -42,6 +40,8 @@ describe('TodoDashboardComponent', () => {
     component.nameTodo?.setValue('Nuevo Todo');
     component.createNewTodo();
     expect(component.todoList.length).toBe(1);
-    expect(component.todoList.find(item => item.titulo === 'Nuevo Todo')).toBeTruthy();
-  })
+    expect(
+      component.todoList.find((item) => item.titulo === 'Nuevo Todo')
+    ).toBeTruthy();
+  });
 });

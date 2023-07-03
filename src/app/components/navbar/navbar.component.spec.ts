@@ -1,22 +1,23 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 
-import { TodoNavbarComponent } from './todo-navbar.component';
+import { NavbarComponent } from './navbar.component';
 
-describe('TodoNavbarComponent', () => {
-  let component: TodoNavbarComponent;
-  let fixture: ComponentFixture<TodoNavbarComponent>;
+describe('NavbarComponent', () => {
+  let component: NavbarComponent;
+  let fixture: ComponentFixture<NavbarComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [TodoNavbarComponent],
+      declarations: [NavbarComponent],
       imports: [
         MatIconModule,
         MatToolbarModule,
       ]
     });
-    fixture = TestBed.createComponent(TodoNavbarComponent);
+    fixture = TestBed.createComponent(NavbarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

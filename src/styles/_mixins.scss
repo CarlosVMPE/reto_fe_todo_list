@@ -1,0 +1,23 @@
+@for $i from 1 through 10 {
+  .mr-#{$i} {
+    margin-right: #{$i}rem;
+  }
+}
+
+@for $i from 1 through 10 {
+  .ml-#{$i} {
+    margin-left: #{$i}rem;
+  }
+}
+
+@for $i from 1 through 10 {
+  .mx-#{$i} {
+    margin: 0 #{$i}rem;
+  }
+}
+
+@for $i from 1 through 10 {
+  .my-#{$i} {
+    margin: #{$i}rem 0;
+  }
+}

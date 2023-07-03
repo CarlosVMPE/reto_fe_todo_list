@@ -1,0 +1,49 @@
+/* Input */
+$bg-color: #424242;
+$muted-color: mix(white, $bg-color, 70%);
+
+.input__todo {
+  position: relative;
+  width: 100%;
+
+  input {
+    background-color: #4a4a4a;
+    padding: 1.2rem;
+    border-bottom: 1px solid $muted-color;
+    border-radius: 4px 4px 0 0;
+    border: none;
+    color: $muted-color;
+    transition: padding 0.4s;
+    width: -webkit-fill-available;
+    font-size: 18px;
+  }
+  input:placeholder-shown + label {
+    color: #aaa;
+    font-size: 14px;
+    top: 1.3rem;
+    left: 1rem;
+    font-size: 18px;
+  }
+
+  input:focus + label,
+  label {
+    //color: #4476bd;
+    color: #aaa;
+    font-size: 12px;
+    pointer-events: none;
+    position: absolute;
+    left: 0;
+    top: -1.5rem;
+    font-size: 14px;
+    transition: top 0.4s, left 0.4s, font-size 0.4s;
+  }
+  input::placeholder {
+    color: transparent;
+    display: none;
+  }
+  input:focus,
+  input:not(:placeholder-shown) {
+    border-bottom: solid 1px #7b1fa2;
+    outline: none;
+  }
+}

@@ -1,37 +1,22 @@
 /* You can add global styles to this file, and also import other style files */
+@import './styles/button';
+@import './styles/checkbox';
+@import './styles/formAdition';
+@import './styles/input';
+@import './styles/mixins';
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background: rgb(48, 48, 48)}
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background: rgb(48, 48, 48);
+}
 
-.block__addition {
-  display: flex;
-  justify-content: center;
-  max-width: 100%;
-  width: 100%;
+/* Navbar */
 
-  .block__addition--input{
-    height: 80px;
-    width: 120%;
-  }
-
-  .block__addition--button{
-    margin-left: 1rem;
-    width: 15%;
-    button{
-      height: 60px;
-    }
-  }
-
-  @media (max-width: 767px) {
-    display: block;
-
-    .block__addition--button{
-      margin: 0;
-    }
-
-    .block__addition--input,
-    .block__addition--button, .block__addition--button > button{
-      width: 100%;
-    }
-  }
+.navbar__todo--spacer {
+  flex-grow: 1;
 }

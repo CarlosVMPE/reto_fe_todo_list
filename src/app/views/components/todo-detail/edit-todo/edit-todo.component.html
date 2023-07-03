@@ -1,22 +1,18 @@
 <div mat-dialog-content class="block__edit--todo">
   <h2>Edición de la tarea</h2>
 
-  <div class="formAddItem">
+  <div class="edition--form_todo">
     <form [formGroup]="formEditItem">
-
-      <div class="wrap-add-input">
-
-        <mat-form-field>
-          <mat-label>Nombre de la tarea</mat-label>
-          <input matInput formControlName="description">
-        </mat-form-field>
+      <div class="input__todo">
+        <input type="text" formControlName="description" placeholder="Ingrese una tarea" required />
+        <label for="nameTodo">Nombre de la tarea</label>
       </div>
-
     </form>
   </div>
 
 </div>
 <div mat-dialog-actions class="block__edit--accions">
-  <button mat-raised-button color="warn" (click)="onNoClick()">Cancelar</button>
-  <button mat-raised-button color="primary" [mat-dialog-close]="formEditItem.get('description')?.value" cdkFocusInitial [disabled]="formEditItem.invalid">Actualizar</button>
+  <button class="warn" (click)="onNoClick()">Cancelar</button>
+  <button class="primary ml-1" [mat-dialog-close]="formEditItem.get('description')?.value" cdkFocusInitial
+    [disabled]="formEditItem.invalid">Actualizar</button>
 </div>

@@ -1,52 +1,51 @@
-
-.todo__detail--accions{
-  margin-top: 1rem;
+.todo__detail--accions {
+  margin: 1rem 0;
 
   @media (max-width: 767px) {
-    margin-top: 2rem;
+    margin: 2rem 0;
   }
 }
 
-.todo__detail--item{
+.todo__detail--item {
   cursor: pointer;
   display: flex;
   width: 100%;
+  margin: 1rem 0;
 
-  .todo__detail--item--description{
+  .todo__detail--item--description {
     width: 90%;
   }
 
   .todo__detail--item--edit,
-  .todo__detail--item--delete{
+  .todo__detail--item--delete {
     text-align: center;
     width: 5%;
 
-    @media (max-width: 767px){
+    @media (max-width: 767px) {
       width: 7%;
     }
   }
 }
 
 .mdc-dialog__content,
-.mdc-dialog__actions{
+.mdc-dialog__actions {
   padding: 1.5rem 1.2rem;
 }
 
-.mdc-dialog__content{
+.mdc-dialog__content {
   padding-bottom: 0;
 }
 
-.mdc-dialog__actions{
+.mdc-dialog__actions {
   padding-top: 0;
 }
 
-mat-form-field{
-  width: 100%;
-}
-
-
-.block__delete--todo{
-  p{
+.block__delete--todo {
+  p {
     margin-bottom: 1.5rem;
   }
+}
+
+.edition--form_todo {
+  margin: 2rem 0;
 }

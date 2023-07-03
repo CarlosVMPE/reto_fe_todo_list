@@ -1,16 +1,28 @@
-<app-todo-navbar></app-todo-navbar>
+
+<app-navbar color="purple">
+  <span>Todo List App</span>
+    <span class="navbar__todo--spacer"></span>
+    <button mat-icon-button class="navbar__todo--favorite" aria-label="Lista de todos favoritos">
+      <mat-icon>favorite</mat-icon>
+    </button>
+    <button mat-icon-button class="navbar__todo--code" aria-label="Código fuente del proyecto">
+      <mat-icon>code</mat-icon>
+    </button>
+</app-navbar>
 
 <main class="dashboard__todo">
   <form [formGroup]="formAddTodo" class="dashboard__todo--form">
 
     <div class="block__addition">
-      <mat-form-field class="block__addition--input">
-        <mat-label>Ingrese un título</mat-label>
-        <input matInput type="text" formControlName="nameTodo" placeholder="Ingrese un nombre para el nuevo Todo" />
-      </mat-form-field>
+      <div class="block__addition--input">
+        <div class="input__todo">
+          <input type="text" formControlName="nameTodo" placeholder="Ingrese un nombre para el nuevo Todo" required/>
+          <label for="nameTodo">Ingrese un título</label>
+        </div>
+      </div>
 
-      <div class="block__addition--button">
-        <button mat-raised-button color="accent" (click)="createNewTodo()" [disabled]="formAddTodo.invalid">
+      <div class="block__addition--button" >
+        <button class="accent" (click)="createNewTodo()" [disabled]="formAddTodo.invalid">
           Agregar Todo
         </button>
       </div>

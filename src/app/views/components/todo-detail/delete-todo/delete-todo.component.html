@@ -3,6 +3,7 @@
   <p>{{ data.description }}</p>
 </div>
 <div mat-dialog-actions class="block__delete--accions">
-  <button mat-raised-button color="warn" (click)="onNoClick()">Cancelar</button>
-  <button mat-raised-button color="primary" [mat-dialog-close]="data.description" cdkFocusInitial [disabled]="data.description.length == 0">Eliminar</button>
+  <button class="warn" (click)="onNoClick()">Cancelar</button>
+  <button class="primary ml-1" [mat-dialog-close]="data.description" cdkFocusInitial
+    [disabled]="data.description.length == 0">Actualizar</button>
 </div>

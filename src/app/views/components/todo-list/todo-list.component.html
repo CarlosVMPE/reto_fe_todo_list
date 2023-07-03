@@ -3,9 +3,9 @@
     <mat-expansion-panel-header (click)="setSelectedTodo(todo)">
       <mat-panel-title>
         {{ todo.titulo }}
-        <button class="block__todo--completed" mat-raised-button color="accent" *ngIf="markAsCompleteTodo(todo)">
+        <button class="block__todo--completed accent" *ngIf="markAsCompleteTodo(todo)">
           <mat-icon>done</mat-icon>
-          <span>Completado</span>
+          Completado
         </button>
       </mat-panel-title>
     </mat-expansion-panel-header>
