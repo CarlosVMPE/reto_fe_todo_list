@@ -13,9 +13,15 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 
+import { NgxsModule } from '@ngxs/store';
+
 import { EditTodoComponent } from './views/components/todo-detail/edit-todo/edit-todo.component';
 import { DeleteTodoComponent } from './views/components/todo-detail/delete-todo/delete-todo.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+
+// ✨ New 👇
+import { NgxsReduxDevtoolsPluginModule } from "@ngxs/devtools-plugin";
+import { TodoState } from './core/store/todos/todo.state';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,6 +40,8 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     MatExpansionModule,
     MatIconModule,
     MatDialogModule,
+    NgxsReduxDevtoolsPluginModule.forRoot(),
+    NgxsModule.forRoot([TodoState])
   ],
   providers: [],
   bootstrap: [AppComponent],
