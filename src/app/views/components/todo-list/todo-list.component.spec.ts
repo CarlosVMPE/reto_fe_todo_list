@@ -4,6 +4,9 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { TodoListComponent } from './todo-list.component';
 import { TodoList } from 'src/app/shared/models/TodoList';
 import { TodoItem } from 'src/app/shared/models/TodoItem';
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { NgxsModule } from '@ngxs/store';
+import { TodoState } from 'src/app/core/store/todos/todo.state';
 
 describe('TodoListComponent', () => {
   let component: TodoListComponent;
@@ -13,7 +16,11 @@ describe('TodoListComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [TodoListComponent],
-      imports: [MatExpansionModule],
+      imports: [
+        MatExpansionModule,
+        NgxsReduxDevtoolsPluginModule.forRoot(),
+        NgxsModule.forRoot([TodoState])
+      ],
     });
     fixture = TestBed.createComponent(TodoListComponent);
     component = fixture.componentInstance;

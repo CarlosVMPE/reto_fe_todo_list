@@ -8,6 +8,9 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { TodoListComponent } from '../todo-list/todo-list.component';
 import { TodoDashboardComponent } from './todo-dashboard.component';
 import { NavbarComponent } from 'src/app/components/navbar/navbar.component';
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { NgxsModule } from '@ngxs/store';
+import { TodoState } from 'src/app/core/store/todos/todo.state';
 
 describe('TodoDashboardComponent', () => {
   let component: TodoDashboardComponent;
@@ -25,6 +28,8 @@ describe('TodoDashboardComponent', () => {
         MatIconModule,
         MatExpansionModule,
         ReactiveFormsModule,
+        NgxsReduxDevtoolsPluginModule.forRoot(),
+        NgxsModule.forRoot([TodoState])
       ],
     });
     fixture = TestBed.createComponent(TodoDashboardComponent);

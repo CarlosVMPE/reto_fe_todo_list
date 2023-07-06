@@ -4,6 +4,9 @@ import { TodoDetailComponent } from './todo-detail.component';
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
 import { TodoList } from 'src/app/shared/models/TodoList';
 import { of } from 'rxjs';
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { NgxsModule } from '@ngxs/store';
+import { TodoState } from 'src/app/core/store/todos/todo.state';
 
 describe('TodoDetailComponent', () => {
   let component: TodoDetailComponent;
@@ -13,7 +16,11 @@ describe('TodoDetailComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [TodoDetailComponent],
-      imports: [MatDialogModule],
+      imports: [
+        MatDialogModule,
+        NgxsReduxDevtoolsPluginModule.forRoot(),
+        NgxsModule.forRoot([TodoState])
+      ],
     });
     fixture = TestBed.createComponent(TodoDetailComponent);
     component = fixture.componentInstance;

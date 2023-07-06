@@ -1,9 +1,9 @@
-export interface TodoModel {
-    id: number;
-    title: string;
-    isActive: boolean;
-}
+import { TodoList } from "src/app/shared/models/TodoList";
 
 export interface TodoStateModel {
-    items: TodoModel[];
+    items: TodoList[];
+}
+
+export interface TodoSelectedStateModel {
+    selected: TodoList;
 }

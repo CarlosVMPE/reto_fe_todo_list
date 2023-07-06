@@ -2,12 +2,21 @@ import { TestBed } from '@angular/core/testing';
 
 import { TodolistService } from './todolist.service';
 import { TodoList } from 'src/app/shared/models/TodoList';
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { NgxsModule } from '@ngxs/store';
+import { TodoState } from '../store/todos/todo.state';
 
 describe('TodolistService', () => {
   let service: TodolistService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
+    TestBed.configureTestingModule({
+      imports: [
+        NgxsReduxDevtoolsPluginModule.forRoot(),
+        NgxsModule.forRoot([TodoState])
+      ],
+    });
+
     service = TestBed.inject(TodolistService);
   });
 

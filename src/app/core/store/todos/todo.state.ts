@@ -1,7 +1,8 @@
 import { Injectable } from "@angular/core";
 import { Action, State, StateContext } from "@ngxs/store";
-import { TodoModel, TodoStateModel } from "./Todo.model";
-import { AddTodo } from "./todo.actions";
+import { TodoSelectedStateModel, TodoStateModel } from "./Todo.model";
+import { TodoSelected, UpdateTodos } from "./todo.actions";
+import { TodoList } from "src/app/shared/models/TodoList";
 
 @State<TodoStateModel>({
     name: "todo",
@@ -9,21 +10,33 @@ import { AddTodo } from "./todo.actions";
         items: [],
     },
 })
+
+@State<TodoSelectedStateModel>({
+    name: "selected",
+    defaults: {
+      selected: new TodoList(''),
+    },
+})
 @Injectable()
 export class TodoState {
-    @Action(AddTodo)
-    addTodo(ctx: StateContext<TodoStateModel>, action: AddTodo) {
-        const state = ctx.getState();
 
-        const newItem: TodoModel = {
-            id: Math.floor(Math.random() * 1000),
-            title: action.title,
-            isActive: true,
-        };
+    @Action(UpdateTodos)
+    updateTodos(ctx: StateContext<TodoStateModel>, action: UpdateTodos) {
+        const state = ctx.getState();
 
         ctx.setState({
             ...state,
-            items: [...state.items, newItem],
+            items: [...action.todos],
+        });
+    }
+
+    @Action(TodoSelected)
+    todoSelected(ctx: StateContext<TodoSelectedStateModel>, action: TodoSelected) {
+        const state = ctx.getState();
+
+        ctx.setState({
+            ...state,
+            selected: action.todo
         });
     }
 }

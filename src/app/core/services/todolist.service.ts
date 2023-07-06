@@ -1,30 +1,36 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { Select, Store } from '@ngxs/store';
+import { Observable } from 'rxjs';
 import { TodoList } from 'src/app/shared/models/TodoList';
+import { TodoSelected, UpdateTodos } from '../store/todos/todo.actions';
+import { TodoSelectors } from '../store/todos/todo.selectors';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TodolistService {
 
-  private listTodo = new BehaviorSubject<TodoList[]>([]);
-  private todoSelected = new BehaviorSubject<TodoList>(new TodoList(''));
+  @Select(TodoSelectors.items)
+  items$: Observable<TodoList[]>;
 
-  constructor() { }
+  @Select(TodoSelectors.selected)
+  selected$: Observable<TodoList>;
 
-  updateTodoList(event: TodoList[]) {
-    this.listTodo.next(event);
+  constructor(public store: Store) { }
+
+  updateTodoList(todoList: TodoList[]) {
+    this.store.dispatch(new UpdateTodos(todoList));
   }
 
   getTodoList() {
-    return this.listTodo.asObservable();
+    return this.items$;
   }
 
-  setTodoSelected(event: TodoList) {
-    this.todoSelected.next(event);
+  setTodoSelected(todoSelected: TodoList) {
+    this.store.dispatch(new TodoSelected(todoSelected));
   }
 
   getTodoSelected() {
-    return this.todoSelected.asObservable();
+    return this.selected$;
   }
 }

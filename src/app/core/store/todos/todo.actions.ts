@@ -1,12 +1,11 @@
-import { TodoModel } from "./Todo.model";
+import { TodoList } from "src/app/shared/models/TodoList";
 
-
-export class AddTodo {
-  static readonly type = "[Todo] Add todo";
-  constructor(public title: string) {}
+export class UpdateTodos {
+  static readonly type = "[Todos] Update todos";
+  constructor(public todos: TodoList[]) {}
 }
 
-export class ChangeStatus {
-  static readonly type = "[Todo] Change status";
-  constructor(public readonly todoItem: TodoModel, public readonly status: boolean) {}
+export class TodoSelected {
+  static readonly type = "[Todo] Todo Selected";
+  constructor(public todo: TodoList) {}
 }
