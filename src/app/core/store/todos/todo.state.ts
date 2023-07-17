@@ -24,7 +24,7 @@ export class TodoState {
     updateTodos(ctx: StateContext<TodoStateModel>, action: UpdateTodos) {
         const state = ctx.getState();
 
-        ctx.setState({
+        ctx.patchState({
             ...state,
             items: [...action.todos],
         });
@@ -34,7 +34,7 @@ export class TodoState {
     todoSelected(ctx: StateContext<TodoSelectedStateModel>, action: TodoSelected) {
         const state = ctx.getState();
 
-        ctx.setState({
+        ctx.patchState({
             ...state,
             selected: action.todo
         });
