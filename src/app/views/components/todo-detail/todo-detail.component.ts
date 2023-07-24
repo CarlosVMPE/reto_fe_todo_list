@@ -3,9 +3,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { TodolistService } from 'src/app/core/services/todolist.service';
 import { TodoItem } from 'src/app/shared/models/TodoItem';
-import { TodoList } from 'src/app/shared/models/TodoList';
 import { EditTodoComponent } from './edit-todo/edit-todo.component';
 import { DeleteTodoComponent } from './delete-todo/delete-todo.component';
+import { ActionModal } from 'src/app/shared/interfaces/Dialog';
 
 @Component({
   selector: 'app-todo-detail',
@@ -13,9 +13,9 @@ import { DeleteTodoComponent } from './delete-todo/delete-todo.component';
   styleUrls: ['./todo-detail.component.scss'],
 })
 export class TodoDetailComponent implements OnInit {
-  todoSelected: TodoList = new TodoList('');
-  todoList: TodoList[] = [];
+
   description: string;
+  todoSelected = this.todoListService.todoSelected;
 
   formAddItem: FormGroup = this.fb.group({
     nameItem: [
@@ -30,87 +30,44 @@ export class TodoDetailComponent implements OnInit {
     public todoListService: TodolistService
   ) {}
 
-  ngOnInit(): void {
-    this.todoListService
-      .getTodoList()
-      .subscribe((list) => (this.todoList = [...list]));
-    this.todoListService
-      .getTodoSelected()
-      .subscribe((selected) => (this.todoSelected = selected));
-  }
+  ngOnInit(): void {}
 
   addItemsTodo(): void {
     if (this.nameItem?.value) {
-      this.todoList.map((list) => {
-        if (list.id === this.todoSelected.id) {
-          const newTodoItem = new TodoItem(this.nameItem?.value);
-          list.items.push(newTodoItem);
-          this.formAddItem.reset();
-        }
-      });
-
-      this.todoListService.updateTodoList(this.todoList);
+      this.todoListService.addItemsTodo(this.todoSelected().id, new TodoItem(this.nameItem?.value));
+      this.formAddItem.reset();
     }
-  }
-
-  openDialogEdit(position: number, desc: string): void {
-    const dialogRef = this.dialog.open(EditTodoComponent, {
-      width: '400px',
-      data: { description: desc },
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this.editItemTodo(position, result);
-      }
-    });
   }
 
   editItemTodo(position: number, desc: string) {
-    if(this.todoSelected){
-      this.todoList.map((list) => {
-        if (list.id === this.todoSelected.id) {
-          list.items[position].desc = desc;
-        }
-      });
-    }
-
-    this.todoListService.updateTodoList(this.todoList);
+    this.todoListService.editItemTodo(this.todoSelected().id, position, desc);
   }
 
-  openDialogDelete(position: number, desc: string): void {
-    const dialogRef = this.dialog.open(DeleteTodoComponent, {
+  openDialogByAction(position: number, desc: string, action: string){
+    let instanceComponent: ActionModal = { component: DeleteTodoComponent, action: () => this.deleteItemTodo(position) };
+
+    if(action === 'EDIT'){
+      instanceComponent = { component: EditTodoComponent, action: (result: any) => this.editItemTodo(position, result)};
+    }
+
+    const dialogRef = this.dialog.open(instanceComponent.component, {
       width: '400px',
       data: { description: desc },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
       if (result) {
-        this.deleteItemTodo(position);
+        instanceComponent.action(result);
       }
     });
   }
 
   deleteItemTodo(position: number) {
-    if(this.todoSelected){
-      this.todoList.map((list) => {
-        if (list.id === this.todoSelected.id) {
-          list.items.splice(position, 1);
-        }
-      });
-    }
-
-    this.todoListService.updateTodoList(this.todoList);
+    this.todoListService.deleteItemTodo(this.todoSelected().id, position);
   }
 
   toggleCompleteItem(position: number) {
-    this.todoList.map((list) => {
-      if (list.id === this.todoSelected.id) {
-        list.items[position].completado = !list.items[position].completado;
-      }
-    });
-
-    this.todoListService.updateTodoList(this.todoList);
+    this.todoListService.toggleCompleteItem(this.todoSelected().id, position);
   }
 
   get nameItem() {

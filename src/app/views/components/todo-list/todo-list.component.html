@@ -1,5 +1,5 @@
 <mat-accordion class="block__todo-list">
-  <mat-expansion-panel *ngFor="let todo of todoList" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
+  <mat-expansion-panel *ngFor="let todo of todoList()" (opened)="panelOpenState = true" (closed)="panelOpenState = false">
     <mat-expansion-panel-header (click)="setSelectedTodo(todo)">
       <mat-panel-title>
         {{ todo.titulo }}

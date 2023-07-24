@@ -1,85 +1,61 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { TodoDetailComponent } from './todo-detail.component';
-
 import { MatDialogModule, MatDialogRef } from '@angular/material/dialog';
-import { TodoList } from 'src/app/shared/models/TodoList';
 import { of } from 'rxjs';
-import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
-import { NgxsModule } from '@ngxs/store';
-import { TodoState } from 'src/app/core/store/todos/todo.state';
+import { TodoDetailComponent } from './todo-detail.component';
 
 describe('TodoDetailComponent', () => {
   let component: TodoDetailComponent;
   let fixture: ComponentFixture<TodoDetailComponent>;
-  let mockList: TodoList[] = [new TodoList('First Todo'), new TodoList('Second Todo')];
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [TodoDetailComponent],
-      imports: [
-        MatDialogModule,
-        NgxsReduxDevtoolsPluginModule.forRoot(),
-        NgxsModule.forRoot([TodoState])
-      ],
+      imports: [MatDialogModule],
     });
     fixture = TestBed.createComponent(TodoDetailComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    component.todoList = mockList;
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should be add an item to the first todo', () => {
-    component.todoSelected = mockList[0];
-    component.todoList[0].items = [];
+  it('should be add an item to the todo selected', () => {
+    const spyAddItems = jest.spyOn(component.todoListService, 'addItemsTodo');
     component.nameItem?.setValue('Tarea 1');
     component.addItemsTodo();
-    expect(component.todoList[0].items.length).toBe(1);
+    expect(spyAddItems).toHaveBeenCalled();
   });
 
-  it('should be call to open in dialog for Edit', () => {
-    const spyDialog = spyOn(component.dialog, 'open').and.returnValue({
+  it('should be call to open in dialog for EDIT', () => {
+    const spyDialog = jest.spyOn(component.dialog, 'open').mockReturnValue({
       afterClosed: () => of(true),
     } as MatDialogRef<typeof component>);
-    component.openDialogEdit(0, 'Tarea 1');
+    component.openDialogByAction(0, 'Tarea 11', 'EDIT');
     expect(spyDialog).toHaveBeenCalled();
   });
 
-  it('should be edit an item of the todo selected', () => {
-    component.todoSelected = mockList[0];
-    component.todoList[0].items = [];
-    component.nameItem?.setValue('Tarea 1');
-    component.addItemsTodo();
-    component.editItemTodo(0, 'Tarea 11');
-    const task1 = component.todoList[0].items.find(item => item.desc === 'Tarea 11')
-    expect(task1).toBeTruthy();
-  });
-
-  it('should be call to open in dialog for Delete', () => {
-    const spyDialog = spyOn(component.dialog, 'open').and.returnValue({
+  it('should be call to open in dialog for DELETE', () => {
+    const spyDialog = jest.spyOn(component.dialog, 'open').mockReturnValue({
       afterClosed: () => of(true),
     } as MatDialogRef<typeof component>);
-    component.openDialogDelete(0, 'Tarea 11');
+    component.openDialogByAction(0, 'Tarea 11', 'DELETE');
     expect(spyDialog).toHaveBeenCalled();
   });
 
-  it('should be delete an item of the todo selected', () => {
-    component.todoSelected = mockList[0];
-    component.deleteItemTodo(0);
-    const task1 = component.todoList[0].items.find(item => item.desc === 'Tarea 11')
-    expect(task1).toBeUndefined();
+  it('should be not call to open in dialog for EDIT / DELETE', () => {
+    const spyEdit = jest.spyOn(component, 'editItemTodo');
+    component.openDialogByAction(0, 'Tarea 11', 'NO_CASE');
+    expect(spyEdit).not.toHaveBeenCalled();
   });
 
   it('should be toggle the value complete of a item in a todo', () => {
-    component.todoSelected = mockList[0];
-    component.nameItem?.setValue('Tarea 1');
-    component.addItemsTodo();
+    const spyToggle = jest.spyOn(
+      component.todoListService,
+      'toggleCompleteItem'
+    );
     component.toggleCompleteItem(0);
-    expect(component.todoList[0].items[0].completado).toBeTrue();
+    expect(spyToggle).toHaveBeenCalled();
   });
-
 });
-

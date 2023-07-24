@@ -4,52 +4,44 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { TodoListComponent } from './todo-list.component';
 import { TodoList } from 'src/app/shared/models/TodoList';
 import { TodoItem } from 'src/app/shared/models/TodoItem';
-import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
-import { NgxsModule } from '@ngxs/store';
-import { TodoState } from 'src/app/core/store/todos/todo.state';
 
 describe('TodoListComponent', () => {
   let component: TodoListComponent;
   let fixture: ComponentFixture<TodoListComponent>;
-  let mockList: TodoList[] = [new TodoList('First Todo'), new TodoList('Second Todo')];
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [TodoListComponent],
-      imports: [
-        MatExpansionModule,
-        NgxsReduxDevtoolsPluginModule.forRoot(),
-        NgxsModule.forRoot([TodoState])
-      ],
+      imports: [MatExpansionModule],
     });
     fixture = TestBed.createComponent(TodoListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    component.todoList = mockList;
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should assign the selected todo', () => {
-    component.setSelectedTodo(component.todoList[0]);
-    expect(component.todoSelected).toEqual(component.todoList[0]);
+  it('should assign and call to selected todo', () => {
+    const spySelected = jest.spyOn(
+      component.todoListService,
+      'updateTodoSelected'
+    );
+    component.setSelectedTodo(new TodoList('Todo Example'));
+    expect(spySelected).toHaveBeenCalled();
   });
 
   it('should be return false when not exists any items in a todo', () => {
-    expect(component.markAsCompleteTodo(component.todoList[0])).toBeFalsy();
+    expect(
+      component.markAsCompleteTodo(new TodoList('Todo Example'))
+    ).toBeFalsy();
   });
 
-  it('should be return false when all items are incomplete', () => {
-    component.todoList[0].items.push(new TodoItem('Task 1'));
-    component.todoList[0].items.push(new TodoItem('Task 2'));
-    expect(component.markAsCompleteTodo(component.todoList[0])).toBeFalsy();
+  it('should be return true when all items are complete', () => {
+    const todoExample: TodoList = new TodoList('Todo Example');
+    todoExample.items.push(new TodoItem('1'));
+    todoExample.items[0].completado = true;
+    expect(component.markAsCompleteTodo(todoExample)).toBeTruthy();
   });
-
-  it('should be return false when any items exists', () => {
-    component.todoList[0].items = []
-    expect(component.markAsCompleteTodo(component.todoList[0])).toBeFalse();
-  });
-
 });

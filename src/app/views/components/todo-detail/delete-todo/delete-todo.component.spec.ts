@@ -34,7 +34,7 @@ describe('DeleteTodoComponent', () => {
         { provide: MAT_DIALOG_DATA, useValue: model },
         {
           provide: MatDialogRef,
-          useValue: { close: () => {}},
+          useValue: { close: () => {} },
         },
       ],
     });
@@ -48,9 +48,8 @@ describe('DeleteTodoComponent', () => {
   });
 
   it('should be call to function close', () => {
-    const spyClose = spyOn(component.dialogRef, 'close');
+    const spyClose = jest.spyOn(component.dialogRef, 'close');
     component.onNoClick();
     expect(spyClose).toHaveBeenCalled();
   });
-
 });

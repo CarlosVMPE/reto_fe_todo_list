@@ -25,4 +25,9 @@ describe('NavbarComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should be return navbar-purple', () => {
+    component.color = 'purple';
+    expect(component.asignColor()).toBe('navbar-purple');
+  });
 });

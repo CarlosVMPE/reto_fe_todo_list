@@ -1,36 +1,56 @@
-import { Injectable } from '@angular/core';
-import { Select, Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
-import { TodoList } from 'src/app/shared/models/TodoList';
-import { TodoSelected, UpdateTodos } from '../store/todos/todo.actions';
-import { TodoSelectors } from '../store/todos/todo.selectors';
+import { Injectable, signal } from '@angular/core';
+import { TodoList } from '../../shared/models/TodoList';
+import { TodoItem } from '../../shared/models/TodoItem';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class TodolistService {
 
-  @Select(TodoSelectors.items)
-  items$: Observable<TodoList[]>;
+  todoList = signal<TodoList[]>([]);
+  todoSelected = signal<TodoList>(new TodoList(''));
 
-  @Select(TodoSelectors.selected)
-  selected$: Observable<TodoList>;
+  constructor() {}
 
-  constructor(public store: Store) { }
-
-  updateTodoList(todoList: TodoList[]) {
-    this.store.dispatch(new UpdateTodos(todoList));
+  addTodo(todo: TodoList) {
+    this.todoList.mutate((items) => items.push(todo));
   }
 
-  getTodoList() {
-    return this.items$;
+  addItemsTodo(idTodo: number, todo: TodoItem){
+    this.todoList().map((todoItem) => {
+      if (todoItem.id === idTodo) {
+        todoItem.items.push(todo);
+        return todo;
+      }
+      return todoItem;
+    });
   }
 
-  setTodoSelected(todoSelected: TodoList) {
-    this.store.dispatch(new TodoSelected(todoSelected));
+  editItemTodo(idTodo: number, position: number, description: string){
+    this.todoList().map((todoItem) => {
+      if (todoItem.id === idTodo) {
+        todoItem.items[position].desc = description;
+      }
+    });
   }
 
-  getTodoSelected() {
-    return this.selected$;
+  deleteItemTodo(idTodo: number, position: number){
+    this.todoList().map((todoItem) => {
+      if (todoItem.id === idTodo) {
+        todoItem.items.splice(position, 1);
+      }
+    });
+  }
+
+  toggleCompleteItem(idTodo: number, position: number){
+    this.todoList().map((todoItem) => {
+      if(todoItem.id === idTodo){
+        todoItem.items[position].completado = !todoItem.items[position].completado;
+      }
+    })
+  }
+
+  updateTodoSelected(todoSelected: TodoList){
+    this.todoSelected.update((selected) => todoSelected)
   }
 }

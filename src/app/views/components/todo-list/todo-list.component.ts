@@ -8,19 +8,15 @@ import { TodoList } from 'src/app/shared/models/TodoList';
   styleUrls: ['./todo-list.component.scss'],
 })
 export class TodoListComponent implements OnInit{
-  todoList: TodoList[] = [];
-  todoSelected: TodoList = new TodoList('');
   panelOpenState: boolean;
+  todoList = this.todoListService.todoList;
 
   constructor(public todoListService: TodolistService) {}
 
-  ngOnInit(): void {
-    this.todoListService.getTodoList().subscribe(list => this.todoList = [...list])
-  }
+  ngOnInit(): void {}
 
   setSelectedTodo(todo: TodoList): void{
-    this.todoSelected = todo;
-    this.todoListService.setTodoSelected(todo);
+    this.todoListService.updateTodoSelected(todo);
   }
 
   markAsCompleteTodo(todo: TodoList): boolean {

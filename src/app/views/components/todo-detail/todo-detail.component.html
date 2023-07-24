@@ -1,4 +1,4 @@
-<div *ngIf="todoSelected" class="todo__detail">
+<div *ngIf="todoSelected().titulo" class="todo__detail">
 
   <div class="todo__detail--form">
     <form [formGroup]="formAddItem">
@@ -20,8 +20,8 @@
     </form>
   </div>
 
-  <section *ngIf="todoSelected.items.length > 0" class="todo__detail--accions">
-    <div *ngFor="let item of todoSelected.items; let i = index" class="todo__detail--item">
+  <section *ngIf="todoSelected() && todoSelected().items.length > 0" class="todo__detail--accions">
+    <div *ngFor="let item of todoSelected().items; let i = index" class="todo__detail--item">
 
       <label class="pure-material-checkbox todo__detail--item--description">
         <input type="checkbox" (click)="toggleCompleteItem(i)" [checked]="item.completado">
@@ -29,10 +29,10 @@
       </label>
 
       <mat-icon class="todo__detail--item--edit" aria-hidden="false" color="accent" aria-label="Edición de la tarea"
-        title="Edición de la tarea" fontIcon="edit" (click)="openDialogEdit(i, item.desc)">
+        title="Edición de la tarea" fontIcon="edit" (click)="openDialogByAction(i, item.desc, 'EDIT')">
       </mat-icon>
       <mat-icon class="todo__detail--item--delete" aria-hidden="false" color="warn" aria-label="Eliminación de la tarea"
-        title="Eliminación de la tarea" fontIcon="delete" (click)="openDialogDelete(i, item.desc)">
+        title="Eliminación de la tarea" fontIcon="delete" (click)="openDialogByAction(i, item.desc, 'DELETE')">
       </mat-icon>
     </div>
   </section>
