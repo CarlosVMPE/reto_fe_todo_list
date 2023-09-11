@@ -10,9 +10,10 @@ export class NavbarComponent {
 
 
   asignColor(){
-    switch (this.color){
-      case 'purple': return 'navbar-purple';
-      default: return 'navbar-primary';
+    if(this.color === 'purple'){
+      return 'navbar-purple';
     }
+
+    return 'navbar-primary';
   }
 }

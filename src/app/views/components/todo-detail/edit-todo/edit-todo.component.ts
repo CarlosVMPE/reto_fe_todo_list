@@ -21,7 +21,7 @@ export class EditTodoComponent {
     public dialogRef: MatDialogRef<EditTodoComponent>,
     @Inject(MAT_DIALOG_DATA) public data: DialogData
   ) {
-    if (data && data.description) {
+    if (data?.description) {
       this.description?.setValue(data.description);
     }
   }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { TodolistService } from 'src/app/core/services/todolist.service';
 import { TodoList } from 'src/app/shared/models/TodoList';
 
@@ -7,13 +7,11 @@ import { TodoList } from 'src/app/shared/models/TodoList';
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.scss'],
 })
-export class TodoListComponent implements OnInit{
+export class TodoListComponent {
   panelOpenState: boolean;
   todoList = this.todoListService.todoList;
 
   constructor(public todoListService: TodolistService) {}
-
-  ngOnInit(): void {}
 
   setSelectedTodo(todo: TodoList): void{
     this.todoListService.updateTodoSelected(todo);

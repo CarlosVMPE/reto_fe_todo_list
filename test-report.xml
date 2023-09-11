@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testExecutions version="1">
+  <file path="/Users/carlos.vilchez/Documents/retro-fe/src/app/core/services/todolist.service.spec.ts">
+    <testCase name="TodolistService should be created" duration="25"/>
+    <testCase name="TodolistService should be add a new Todo" duration="3"/>
+    <testCase name="TodolistService should be add items by todoId" duration="3"/>
+    <testCase name="TodolistService should be not add items by todoId when pass an invalid ID" duration="4"/>
+    <testCase name="TodolistService should be edit an item by todoId" duration="3"/>
+    <testCase name="TodolistService should be delete an item by todoId" duration="2"/>
+    <testCase name="TodolistService should be mark as complete an item of todo" duration="2"/>
+    <testCase name="TodolistService should be update the todo selected" duration="3"/>
+  </file>
+  <file path="/Users/carlos.vilchez/Documents/retro-fe/src/app/views/components/todo-dashboard/todo-dashboard.component.spec.ts">
+    <testCase name="TodoDashboardComponent should create" duration="131"/>
+    <testCase name="TodoDashboardComponent should be add a new todo in the List of Todos" duration="25"/>
+  </file>
+  <file path="/Users/carlos.vilchez/Documents/retro-fe/src/app/views/components/todo-detail/delete-todo/delete-todo.component.spec.ts">
+    <testCase name="DeleteTodoComponent should create" duration="94"/>
+    <testCase name="DeleteTodoComponent should be call to function close" duration="17"/>
+  </file>
+  <file path="/Users/carlos.vilchez/Documents/retro-fe/src/app/views/components/todo-detail/todo-detail.component.spec.ts">
+    <testCase name="TodoDetailComponent should create" duration="93"/>
+    <testCase name="TodoDetailComponent should be add an item to the todo selected" duration="11"/>
+    <testCase name="TodoDetailComponent should be call to open in dialog for EDIT" duration="12"/>
+    <testCase name="TodoDetailComponent should be call to open in dialog for DELETE" duration="9"/>
+    <testCase name="TodoDetailComponent should be not call to open in dialog for EDIT / DELETE" duration="52"/>
+    <testCase name="TodoDetailComponent should be toggle the value complete of a item in a todo" duration="7"/>
+  </file>
+  <file path="/Users/carlos.vilchez/Documents/retro-fe/src/app/views/components/todo-list/todo-list.component.spec.ts">
+    <testCase name="TodoListComponent should create" duration="96"/>
+    <testCase name="TodoListComponent should assign and call to selected todo" duration="14"/>
+    <testCase name="TodoListComponent should be return false when not exists any items in a todo" duration="11"/>
+    <testCase name="TodoListComponent should be return true when all items are complete" duration="8"/>
+  </file>
+  <file path="/Users/carlos.vilchez/Documents/retro-fe/src/app/components/navbar/navbar.component.spec.ts">
+    <testCase name="NavbarComponent should create" duration="91"/>
+    <testCase name="NavbarComponent should be return navbar-purple" duration="9"/>
+  </file>
+  <file path="/Users/carlos.vilchez/Documents/retro-fe/src/app/views/components/todo-detail/edit-todo/edit-todo.component.spec.ts">
+    <testCase name="EditTodoComponent should create" duration="96"/>
+    <testCase name="EditTodoComponent should be call to function close" duration="17"/>
+  </file>
+  <file path="/Users/carlos.vilchez/Documents/retro-fe/src/app/app.component.spec.ts">
+    <testCase name="AppComponent should create the app" duration="51"/>
+  </file>
+</testExecutions>

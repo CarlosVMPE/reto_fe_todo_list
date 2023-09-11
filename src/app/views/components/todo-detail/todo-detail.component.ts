@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { TodolistService } from 'src/app/core/services/todolist.service';
@@ -12,7 +12,7 @@ import { ActionModal } from 'src/app/shared/interfaces/Dialog';
   templateUrl: './todo-detail.component.html',
   styleUrls: ['./todo-detail.component.scss'],
 })
-export class TodoDetailComponent implements OnInit {
+export class TodoDetailComponent {
 
   description: string;
   todoSelected = this.todoListService.todoSelected;
@@ -29,8 +29,6 @@ export class TodoDetailComponent implements OnInit {
     public dialog: MatDialog,
     public todoListService: TodolistService
   ) {}
-
-  ngOnInit(): void {}
 
   addItemsTodo(): void {
     if (this.nameItem?.value) {

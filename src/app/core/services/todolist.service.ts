@@ -10,14 +10,12 @@ export class TodolistService {
   todoList = signal<TodoList[]>([]);
   todoSelected = signal<TodoList>(new TodoList(''));
 
-  constructor() {}
-
   addTodo(todo: TodoList) {
     this.todoList.mutate((items) => items.push(todo));
   }
 
   addItemsTodo(idTodo: number, todo: TodoItem){
-    this.todoList().map((todoItem) => {
+    this.todoList().forEach((todoItem) => {
       if (todoItem.id === idTodo) {
         todoItem.items.push(todo);
         return todo;
@@ -27,7 +25,7 @@ export class TodolistService {
   }
 
   editItemTodo(idTodo: number, position: number, description: string){
-    this.todoList().map((todoItem) => {
+    this.todoList().forEach((todoItem) => {
       if (todoItem.id === idTodo) {
         todoItem.items[position].desc = description;
       }
@@ -35,7 +33,7 @@ export class TodolistService {
   }
 
   deleteItemTodo(idTodo: number, position: number){
-    this.todoList().map((todoItem) => {
+    this.todoList().forEach((todoItem) => {
       if (todoItem.id === idTodo) {
         todoItem.items.splice(position, 1);
       }
@@ -43,7 +41,7 @@ export class TodolistService {
   }
 
   toggleCompleteItem(idTodo: number, position: number){
-    this.todoList().map((todoItem) => {
+    this.todoList().forEach((todoItem) => {
       if(todoItem.id === idTodo){
         todoItem.items[position].completado = !todoItem.items[position].completado;
       }
