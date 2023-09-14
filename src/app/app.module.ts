@@ -16,6 +16,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { EditTodoComponent } from './views/components/todo-detail/edit-todo/edit-todo.component';
 import { DeleteTodoComponent } from './views/components/todo-detail/delete-todo/delete-todo.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { GTM } from './shared/contants/constants';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     TodoDetailComponent,
     EditTodoComponent,
     DeleteTodoComponent,
-    NavbarComponent
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -34,9 +35,12 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     BrowserAnimationsModule,
     MatExpansionModule,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule,
   ],
-  providers: [],
+  providers: [
+    { provide: 'googleTagManagerId', useValue: GTM.GTM_ID },
+    { provide: 'googleTagManagerCSPNonce', useValue: GTM.GTM_ID },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

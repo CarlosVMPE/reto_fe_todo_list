@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { TodolistService } from '../../../core/services/todolist.service';
 import { TodoList } from '../../../shared/models/TodoList';
+import { GoogleTagManagerService } from 'angular-google-tag-manager';
 
 @Component({
   selector: 'app-todo-dashboard',
@@ -16,7 +17,8 @@ export class TodoDashboardComponent {
 
   constructor(
     private fb: FormBuilder,
-    public todoListService: TodolistService) {}
+    public todoListService: TodolistService,
+    private gtmService: GoogleTagManagerService) {}
 
   createNewTodo(): void {
     if (this.nameTodo?.value) {
@@ -24,6 +26,15 @@ export class TodoDashboardComponent {
       this.todoListService.addTodo(newTodoList);
       this.formAddTodo.reset();
     }
+
+    // push GTM data layer with a custom event
+    const gtmTag = {
+      event: 'button-click',
+      data: 'my-custom-event',
+    };
+    this.gtmService.pushTag(gtmTag);
+
+    alert('this is a custom event');
   }
 
   get nameTodo() {
