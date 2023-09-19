@@ -1,0 +1,3 @@
+User-agent: *
+Disallow:
+Sitemap: https://carlosvmpe.github.io/reto_fe_todo_list/sitemap.xml
