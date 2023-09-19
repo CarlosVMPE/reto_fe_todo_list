@@ -33,8 +33,6 @@ export class TodoDashboardComponent {
       data: 'my-custom-event',
     };
     this.gtmService.pushTag(gtmTag);
-
-    alert('this is a custom event');
   }
 
   get nameTodo() {
