@@ -18,7 +18,7 @@ $muted-color: mix(white, $bg-color, 70%);
     font-size: 18px;
   }
   input:placeholder-shown + label {
-    color: #aaa;
+    color: #F7F7F7;
     top: 1.3rem;
     left: 1rem;
     font-size: 18px;
@@ -26,7 +26,7 @@ $muted-color: mix(white, $bg-color, 70%);
 
   input:focus + label,
   label {
-    color: #aaa;
+    color: #F7F7F7;
     pointer-events: none;
     position: absolute;
     left: 0;
