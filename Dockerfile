@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('Git'){
             steps {
-                git branch: '', url: ''
+                git branch: 'feature/lighthouse', url: 'https://github.com/CarlosVMPE/reto_fe_todo_list'
             }
         }
 
@@ -18,6 +18,10 @@ pipeline {
 
         stage('Build'){
             steps { sh 'npm run build --optimization --build-optimizer' }
+        }
+
+        stage('Deploy'){
+          steps{ sh 'mv dist/reto-fe/* /docs' }
         }
     }
 }
